@@ -19,9 +19,17 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+// http://expressjs.com/en/starter/basic-routing.html
+app.get('/api/whoami', function (req, res) {
+  res.sendFile(__dirname + '/views/index.html');
+});
 // your first API endpoint...
 app.get('/api/hello', function (req, res) {
-  res.json({ greeting: 'hello API' });
+  res.json({ 
+    ipadress:req.socket.remoteAddress,
+    language:req.headers['accept-language'],
+    software:req.headers['user-agent']
+           });
 });
 
 // listen for requests :)
